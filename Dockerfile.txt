@@ -1,0 +1,26 @@
+# Sử dụng image Python chính thức
+FROM python:3.9-slim
+
+# Cài đặt các gói phụ thuộc cơ bản
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev && \
+    apt-get clean
+
+# Thiết lập thư mục làm việc
+WORKDIR /app
+
+# Sao chép tệp cần thiết vào container
+COPY . /app
+
+# Cài đặt các thư viện Python từ requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Mở cổng hiển thị X11 để hiển thị giao diện GUI
+ENV DISPLAY=:0
+
+# Chạy ứng dụng
+CMD ["python", "Platformer.py"]

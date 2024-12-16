@@ -1,0 +1,5 @@
+pygame==2.1.2
+pygame_gui==0.6.7
+mediapipe==0.8.10
+PyQt5==5.15.9
+opencv-python==4.5.5.64
